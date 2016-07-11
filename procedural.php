@@ -6,15 +6,19 @@
   </head>
   <body>
 <?php
+function load () {
 $handle = file_get_contents("competition.json");
 $json=json_decode($handle);
+return $json;
+}
+$json =load();
 ?>
 <h1><?php echo $json->name; ?></h1>
 <?php
 for ($i=0; $i < count($json->groups); $i++) {
-  $groupes=$json->groups[$i]->id;
+  $id=$json->groups[$i]->id;
   ?>
-  <h2><a href=''><?php echo "Groupe:".$groupes;?></a></h2>
+  <h2><a href=''><?php echo "Groupe:".$id;?></a></h2>
   <?php
   for ($z=0; $z <count($json->groups[$i]->teams) ; $z++) {
     $equipes=$json->groups[$i]->teams[$z];
@@ -22,6 +26,15 @@ for ($i=0; $i < count($json->groups); $i++) {
     <li ><?php echo $equipes;?></li>
     <?php
   }
+for ($z=0; $z <count($json->groups[$i]->teams) ; $z++) {
+for ($a=$z+1; $a < count($json->groups[$i]->teams); $a++) {
+  $equipes=$json->groups[$i]->teams[$z];
+$equipes2=$json->groups[$i]->teams[$a];
+   echo'<p><form action="test.php" method="get">'.$equipes."<input></input>"."vs"."".$equipes2."<input></input><button>validation du pronostic
+</button></form><p>";
+
+}
+}
 }
  ?>
   </body>

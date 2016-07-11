@@ -1,26 +1,25 @@
 <?php
+namespace Group;
+
+use Equipe\Equipe;
+include_once("equipes.php");
+
 
 class Group  {
-public $test="test";
-public $groupes[];
-  public function view ($json) {
 
-    for ($i=0; $i < count($json->groups); $i++) {
-      $groupe=$json->groups[$i]->id;
-      $groupe=array_push()$this->groupes[];
-      ?>
-      <h2><a href=''><?php echo "Groupe:".$groupes;?></a></h2>
-      <?php
-      for ($z=0; $z <count($json->groups[$i]->teams) ; $z++) {
-        $equipes=$json->groups[$i]->teams[$z];
-        ?>
-        <li >
-<?php echo $equipes;?>
-</li>
-        <?php
-      }
+  public $id_equipes;
+  public $tab_equipes=[] ;
+  
+
+  function __construct($id_equipes,$equipes) {
+    $this->id_equipes=$id_equipes;
+
+
+    for ($i=0; $i <count($equipes) ; $i++) {
+      $equipe=new Equipe($equipes[$i]);
+      array_push($this->tab_equipes,$equipe);
     }
-return $this->groupes;
   }
 }
-  ?>
+
+?>
